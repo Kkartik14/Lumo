@@ -1,0 +1,12 @@
+streamlit
+streamlit-webrtc
+fer
+pillow
+pandas
+langchain
+llama-index
+requests
+beautifulsoup4
+PyPDF2
+numpy
+pymongo
