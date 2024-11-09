@@ -1,2 +1,3 @@
-# Lumo
-The Study Buddy That Feels You
+# Sidekick
+Study Vibes, No Jive
+
