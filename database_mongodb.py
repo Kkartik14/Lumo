@@ -2,9 +2,20 @@ import pymongo
 from pymongo import MongoClient
 from datetime import datetime, timedelta
 from logger import logger
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class EmotionDatabase:
-    def __init__(self, uri="mongodb://localhost:27017/", db_name="study_buddy", collection_name="emotions"):
+    def __init__(self, uri=os.getenv("MONGODB_URI"), db_name="study_buddy", collection_name="emotions"):
+        if not uri:
+            logger.error("MONGODB_URI is not set in environment variables.")
+            self.client = None
+            self.db = None
+            self.collection = None
+            return
+
         try:
             self.client = MongoClient(uri)
             self.db = self.client[db_name]
@@ -22,7 +33,7 @@ class EmotionDatabase:
         
         :param emotion: Detected emotion as a string.
         """
-        if self.collection:
+        if self.collection is not None:
             try:
                 emotion_record = {
                     "timestamp": datetime.utcnow(),
@@ -42,7 +53,7 @@ class EmotionDatabase:
         :param minutes: Time window in minutes.
         :return: List of emotions.
         """
-        if self.collection:
+        if self.collection is not None:
             try:
                 time_threshold = datetime.utcnow() - timedelta(minutes=minutes)
                 emotions_cursor = self.collection.find({"timestamp": {"$gte": time_threshold}})

@@ -1,5 +1,3 @@
-# components/todo.py
-
 import pandas as pd
 import streamlit as st
 from logger import logger
