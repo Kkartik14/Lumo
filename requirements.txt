@@ -10,3 +10,11 @@ beautifulsoup4
 PyPDF2
 numpy
 pymongo
+chromadb
+opencv-python
+python-dotenv
+langchain_huggingface
+deepface
+tensorflow==2.18.0
+keras==3.6.0
+tf_keras==2.18.0
