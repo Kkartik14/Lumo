@@ -44,7 +44,7 @@ class OllamaLLM(LLM):
             "model": self.model_name,
             "prompt": prompt,
             "max_tokens": 256, 
-            "temperature": 0.5, 
+            "temperature": 0.5,  
             "top_p": 0.9,
             "stop": stop
         }

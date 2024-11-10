@@ -13,9 +13,11 @@ import os
 class QAGenerator:
     def __init__(self):
         logger.debug("Initializing QAGenerator with LangChain and HuggingFace.")
+        
         self.hf_token = st.secrets.get("hf_api_key") or os.getenv("HUGGINGFACE_API_KEY")
         if not self.hf_token:
             raise ValueError("HuggingFace API token not found in environment or secrets")
+        
         self.llm = HuggingFaceEndpoint(
             repo_id="mistralai/Mistral-7B-Instruct-v0.3",
             max_length=128,
